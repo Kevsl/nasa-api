@@ -3,7 +3,8 @@ import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import { useState } from 'react'
 import { getMarsRoverPhotos } from '../services/generalService'
-
+import { useDispatch } from 'react-redux'
+import { setItemId } from '../redux/item'
 const marks = [
   {
     value: 0,
@@ -23,23 +24,18 @@ const marks = [
   },
 ]
 
-function valuetext(value) {
+export function valuetext(value) {
   return `${value}`
 }
 
 function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value) + 1
 }
-function alertLabel(label) {}
 
 export default function DiscreteSliderValues() {
-  const [item, setItem] = useState(0)
-
+  const dispatch = useDispatch()
   function handleValue(value) {
-    if (value === 66 && item === 0) {
-      getMarsRoverPhotos()
-      setItem(1)
-    }
+    dispatch(setItemId(value))
   }
 
   return (

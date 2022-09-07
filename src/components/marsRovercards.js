@@ -1,4 +1,4 @@
-const Cards = (props) => {
+const MarsRoverCards = (props) => {
   return (
     <div>
       <img src={props.url} alt={props.name} />
@@ -9,4 +9,4 @@ const Cards = (props) => {
   )
 }
 
-export default Cards
+export default MarsRoverCards

@@ -1,8 +1,24 @@
 import spaceBg from '../assets/space-bg.jpg'
 import card1 from '../assets/card1.jpg'
 import DiscreteSliderValues from '../components/slider'
+import { getItemId } from '../redux/item'
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { getMarsRoverPhotos } from '../services/generalService'
+import MarsRoverCards from '../components/marsRovercards'
 
 const Home = () => {
+  const id = useSelector((state) => state.item.id)
+  const [roversList, setRoverList] = useState([])
+
+  useEffect(() => {
+    if (id === 66) {
+      getMarsRoverPhotos().then((res) => {
+        setRoverList(res.data.photos)
+      })
+    }
+  }, [id])
+
   return (
     <div>
       <div className="w-screen h-screen">
@@ -32,6 +48,20 @@ const Home = () => {
         <div className="mt-12 w-full h-24  flex items-center justify-center	 bg-gray-dark ">
           <DiscreteSliderValues />
         </div>
+
+        {roversList
+          ? roversList.map((data, i) => {
+              return (
+                <MarsRoverCards
+                  name={data.rover.name}
+                  lauching={data.rover.launch_date}
+                  landing={data.landing_date}
+                  url={data.img_src}
+                  key={i}
+                />
+              )
+            })
+          : null}
       </div>
     </div>
   )
