@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
+import { useState } from 'react'
 
 const marks = [
   {
@@ -31,11 +32,17 @@ function valueLabelFormat(value) {
 function alertLabel(label) {}
 
 export default function DiscreteSliderValues() {
+  const [item, setItem] = useState('')
+
+  function handleValue(value) {
+    alert(value)
+  }
+
   return (
     <Box sx={{ width: '75%' }}>
       <Slider
         aria-label="Restricted values"
-        defaultValue={20}
+        defaultValue={33}
         valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
         step={null}
