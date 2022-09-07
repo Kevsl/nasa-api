@@ -2,6 +2,7 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import { useState } from 'react'
+import { getMarsRoverPhotos } from '../services/generalService'
 
 const marks = [
   {
@@ -32,10 +33,13 @@ function valueLabelFormat(value) {
 function alertLabel(label) {}
 
 export default function DiscreteSliderValues() {
-  const [item, setItem] = useState('')
+  const [item, setItem] = useState(0)
 
   function handleValue(value) {
-    alert(value)
+    if (value === 66 && item === 0) {
+      getMarsRoverPhotos()
+      setItem(1)
+    }
   }
 
   return (
