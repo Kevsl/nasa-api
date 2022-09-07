@@ -11,6 +11,9 @@ const Home = () => {
             className=" object-cover max-h-screen w-full	 "
           />
           <div className="bg-dark-blue w-screen h-screen absolute top-0 opacity-40	"></div>
+          <p className="absolute top-3/4 text-white text-center text-3xl w-full ">
+            Get Nasa Astronomy informations
+          </p>
         </div>
       </div>
     </div>
