@@ -29,6 +29,8 @@ module.exports = {
       spacing: {
         128: '32rem',
         144: '36rem',
+        10: '10%',
+        45: '45%',
       },
       borderRadius: {
         '4xl': '2rem',
