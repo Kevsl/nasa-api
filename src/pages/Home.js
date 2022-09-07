@@ -29,7 +29,7 @@ const Home = () => {
             <p className="text">Find datas for many planets.</p>
           </div>
         </div>
-        <div className="mt-12 w-full h-24  flex items-center justify-center	 ">
+        <div className="mt-12 w-full h-24  flex items-center justify-center	 bg-gray-dark ">
           <DiscreteSliderValues />
         </div>
       </div>

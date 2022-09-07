@@ -60,3 +60,7 @@ body {
 body {
   background-color: #fff;
 }
+.css-1eoe787-MuiSlider-markLabel,
+.css-yafthl-MuiSlider-markLabel {
+  color: #fff !important;
+}

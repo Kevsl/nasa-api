@@ -9,7 +9,7 @@ const marks = [
   },
   {
     value: 33,
-    label: 'Exoplantes',
+    label: 'Exoplanets',
   },
   {
     value: 66,
@@ -22,12 +22,13 @@ const marks = [
 ]
 
 function valuetext(value) {
-  return `${value}°C`
+  return `${value}`
 }
 
 function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value) + 1
 }
+function alertLabel(label) {}
 
 export default function DiscreteSliderValues() {
   return (
@@ -40,6 +41,8 @@ export default function DiscreteSliderValues() {
         step={null}
         valueLabelDisplay="auto"
         marks={marks}
+        color="secondary"
+        onChange={(e) => handleValue(e.target.value)}
       />
     </Box>
   )
