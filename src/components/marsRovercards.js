@@ -1,10 +1,14 @@
 const MarsRoverCards = (props) => {
   return (
-    <div>
-      <img src={props.url} alt={props.name} />
-      <p>{props.name}</p>
-      <p>{props.lauching}</p>
-      <p>{props.landing}</p>
+    <div className="w-3/4 mx-auto my-12 bg-gray-dark rounded-lg">
+      <img className="mx-auto rounded-lg" src={props.url} alt={props.name} />
+      <p className="text-center text-white mx-auto"> Robot: {props.name}</p>
+      <p className="text-center text-white mx-auto">
+        Lauching date: {props.lauching}
+      </p>
+      <p className="text-center text-white mx-auto">
+        Landing date: {props.landing}
+      </p>
     </div>
   )
 }

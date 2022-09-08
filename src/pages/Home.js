@@ -15,6 +15,7 @@ const Home = () => {
     if (id === 66) {
       getMarsRoverPhotos().then((res) => {
         setRoverList(res.data.photos)
+        console.log(res)
       })
     }
   }, [id])
@@ -55,7 +56,7 @@ const Home = () => {
                 <MarsRoverCards
                   name={data.rover.name}
                   lauching={data.rover.launch_date}
-                  landing={data.landing_date}
+                  landing={data.rover.landing_date}
                   url={data.img_src}
                   key={i}
                 />

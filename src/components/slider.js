@@ -34,6 +34,7 @@ function valueLabelFormat(value) {
 
 export default function DiscreteSliderValues() {
   const dispatch = useDispatch()
+
   function handleValue(value) {
     dispatch(setItemId(value))
   }
