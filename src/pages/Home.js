@@ -4,25 +4,26 @@ import DiscreteSliderValues from '../components/slider'
 import { getItemId } from '../redux/item'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getMarsRoverPhotos, getAPOD } from '../services/generalService'
-import MarsRoverCards from '../components/marsRovercards'
+import {
+  getMarsRoverPhotos,
+  getAPOD,
+  getSearchedContent,
+} from '../services/generalService'
+import Card from '../components/Card'
 import AstronomyPOD from '../components/AstronomyPod'
+import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   const id = useSelector((state) => state.item.id)
-  const [roversList, setRoverList] = useState([])
+  const [results, setResults] = useState([])
   const [astronomyPOD, setAstronomyPOD] = useState()
-  const [photoLoading, setPhotoLoading] = useState(0)
 
   useEffect(() => {
-    if (id === 66) {
-      getMarsRoverPhotos().then((res) => {
-        setRoverList(res.data.photos)
-        console.log(res)
-      })
-    }
+    getSearchedContent(id).then((res) => {
+      setResults(res.data.collection.items)
+    })
   }, [id])
-  // useless Comment
 
   useEffect(() => {
     getAPOD().then((res) => {
@@ -45,8 +46,10 @@ const Home = () => {
           </p>
           <div className="absolute top-2/4  w-full">
             <div className="  w-10 mx-45 h-48 ">
-              <div className="arrow arrow-first"></div>
-              <div className="arrow arrow-second"></div>
+              <a href="#search">
+                <div className="arrow arrow-first"></div>
+                <div className="arrow arrow-second"></div>
+              </a>
             </div>
           </div>
         </div>
@@ -62,21 +65,25 @@ const Home = () => {
             ) : null}
           </div>
         </div>
-        <div className="mt-12 w-full h-24  flex items-center justify-center	 bg-gray-dark ">
+        <div
+          id="search"
+          className="mt-12 w-full h-24  flex items-center justify-center	 bg-gray-dark "
+        >
           <DiscreteSliderValues />
         </div>
 
-        {roversList
-          ? roversList.map((data, i) => {
-              return (
-                <MarsRoverCards
-                  name={data.rover.name}
-                  lauching={data.rover.launch_date}
-                  landing={data.rover.landing_date}
-                  url={data.img_src}
-                  key={i}
-                />
-              )
+        {results
+          ? results.map((result, i) => {
+              if (result.links) {
+                return (
+                  <Card
+                    url={result.links[0].href}
+                    date_created={result.data[0].date_created}
+                    title={result.data[0].title}
+                    key={i}
+                  />
+                )
+              }
             })
           : null}
       </div>

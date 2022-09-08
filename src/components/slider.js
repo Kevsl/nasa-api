@@ -8,19 +8,19 @@ import { setItemId } from '../redux/item'
 const marks = [
   {
     value: 0,
-    label: 'Asteroids',
+    label: 'Neptune',
   },
   {
     value: 33,
-    label: 'Exoplanets',
+    label: 'Jupiter',
   },
   {
     value: 66,
-    label: 'Mars rover',
+    label: 'Saturn',
   },
   {
     value: 100,
-    label: 'Outter space',
+    label: 'Black Hole',
   },
 ]
 
@@ -36,7 +36,22 @@ export default function DiscreteSliderValues() {
   const dispatch = useDispatch()
 
   function handleValue(value) {
-    dispatch(setItemId(value))
+    let item = ''
+    switch (value) {
+      case 0:
+        item = 'neptune'
+        break
+      case 33:
+        item = 'jupiter'
+        break
+      case 66:
+        item = 'Saturn'
+        break
+      case 100:
+        item = 'blackhole'
+        break
+    }
+    dispatch(setItemId(item))
   }
 
   return (
