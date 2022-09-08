@@ -38,7 +38,7 @@ export default function DiscreteSliderValues() {
   function handleValue(value) {
     dispatch(setItemId(value))
   }
-
+  // useless Comment
   return (
     <Box sx={{ width: '75%' }}>
       <Slider
