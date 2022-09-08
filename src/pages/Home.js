@@ -4,12 +4,15 @@ import DiscreteSliderValues from '../components/slider'
 import { getItemId } from '../redux/item'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getMarsRoverPhotos } from '../services/generalService'
+import { getMarsRoverPhotos, getAPOD } from '../services/generalService'
 import MarsRoverCards from '../components/marsRovercards'
+import AstronomyPOD from '../components/AstronomyPod'
 
 const Home = () => {
   const id = useSelector((state) => state.item.id)
   const [roversList, setRoverList] = useState([])
+  const [astronomyPOD, setAstronomyPOD] = useState()
+  const [photoLoading, setPhotoLoading] = useState(0)
 
   useEffect(() => {
     if (id === 66) {
@@ -20,6 +23,13 @@ const Home = () => {
     }
   }, [id])
   // useless Comment
+
+  useEffect(() => {
+    getAPOD().then((res) => {
+      setAstronomyPOD(res.data)
+    })
+  }, [])
+
   return (
     <div>
       <div className="w-screen h-screen">
@@ -42,8 +52,14 @@ const Home = () => {
         </div>
         <div className="w-full bg-white pt-8">
           <div className="relative flex  bg-white w-1/2 mx-auto justify-between items-center  ">
-            <img src={card1} alt=" a planet" className="h-96  rounded-lg " />
-            <p className="text">Find datas for many planets.</p>
+            {astronomyPOD ? (
+              <AstronomyPOD
+                url={astronomyPOD.url}
+                title={astronomyPOD.title}
+                description={astronomyPOD.explanation}
+                author={astronomyPOD.copyright}
+              />
+            ) : null}
           </div>
         </div>
         <div className="mt-12 w-full h-24  flex items-center justify-center	 bg-gray-dark ">

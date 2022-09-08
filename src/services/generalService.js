@@ -10,3 +10,14 @@ export function getMarsRoverPhotos() {
       console.log(err)
     })
 }
+
+export function getAPOD() {
+  return axios
+    .get(
+      'https://api.nasa.gov/planetary/apod?api_key=ECFcDKRuiucQcskKdNafSMlbk0mlSHySRq7ACbsw'
+    )
+    .then((response) => response)
+    .catch((err) => {
+      console.log(err)
+    })
+}
