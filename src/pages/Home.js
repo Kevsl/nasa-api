@@ -1,8 +1,8 @@
 import spaceBg from '../assets/space-bg.jpg'
 import card1 from '../assets/card1.jpg'
 import DiscreteSliderValues from '../components/slider'
-import { getItemId } from '../redux/item'
-import { useSelector } from 'react-redux'
+import { setItemId } from '../redux/item'
+import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import {
   getMarsRoverPhotos,
@@ -11,13 +11,13 @@ import {
 } from '../services/generalService'
 import Card from '../components/Card'
 import AstronomyPOD from '../components/AstronomyPod'
-import moment from 'moment'
-import { Link } from 'react-router-dom'
 
 const Home = () => {
   const id = useSelector((state) => state.item.id)
   const [results, setResults] = useState([])
   const [astronomyPOD, setAstronomyPOD] = useState()
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     getSearchedContent(id).then((res) => {
@@ -65,9 +65,19 @@ const Home = () => {
             ) : null}
           </div>
         </div>
+        <div className="mt-24 w-full flex items-center flex-col justify-center ">
+          <p className="text-4xl text-center">Choose a theme OR search one </p>
+          <input
+            type="text"
+            className="w-56 mb-4 mt-4   h-6 border border-lg border-black rounded-md"
+            onChange={(e) => {
+              dispatch(setItemId(e.target.value))
+            }}
+          />
+        </div>
         <div
           id="search"
-          className="mt-12 w-full h-24  flex items-center justify-center	 bg-gray-dark "
+          className=" w-full h-24  flex items-center justify-center	 bg-gray-dark "
         >
           <DiscreteSliderValues />
         </div>

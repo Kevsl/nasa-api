@@ -13,6 +13,7 @@ body {
   top: 50%;
   transform-origin: 50% 50%;
   transform: translate3d(-50%, -50%, 0);
+  scroll-behavior: smooth;
 }
 
 .arrow-first {
