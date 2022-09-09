@@ -15,7 +15,7 @@
 
 .env 
 .dev.env
-
+.prod.env
 
 
 # misc

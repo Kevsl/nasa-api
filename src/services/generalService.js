@@ -3,7 +3,7 @@ import axios from 'axios'
 export function getMarsRoverPhotos() {
   return axios
     .get(
-      'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=ECFcDKRuiucQcskKdNafSMlbk0mlSHySRq7ACbsw'
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=${process.env.REACT_APP_API_KEY}`
     )
     .then((response) => response)
     .catch((err) => {
@@ -14,7 +14,7 @@ export function getMarsRoverPhotos() {
 export function getAPOD() {
   return axios
     .get(
-      'https://api.nasa.gov/planetary/apod?api_key=ECFcDKRuiucQcskKdNafSMlbk0mlSHySRq7ACbsw'
+      `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}`
     )
     .then((response) => response)
     .catch((err) => {
