@@ -1,14 +1,9 @@
 import spaceBg from '../assets/space-bg.jpg'
-import card1 from '../assets/card1.jpg'
 import DiscreteSliderValues from '../components/slider'
 import { setItemId } from '../redux/item'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import {
-  getMarsRoverPhotos,
-  getAPOD,
-  getSearchedContent,
-} from '../services/generalService'
+import { getAPOD, getSearchedContent } from '../services/generalService'
 import Card from '../components/Card'
 import AstronomyPOD from '../components/AstronomyPod'
 
@@ -94,6 +89,9 @@ const Home = () => {
                   />
                 )
               }
+
+              // Add a default return value here
+              return null
             })
           : null}
       </div>

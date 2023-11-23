@@ -1,8 +1,6 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
-import { useState } from 'react'
-import { getMarsRoverPhotos } from '../services/generalService'
 import { useDispatch } from 'react-redux'
 import { setItemId } from '../redux/item'
 const marks = [
@@ -50,6 +48,8 @@ export default function DiscreteSliderValues() {
       case 100:
         item = 'blackhole'
         break
+      default:
+        item = 'neptune'
     }
     dispatch(setItemId(item))
   }
